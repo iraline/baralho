@@ -1,18 +1,47 @@
-const copas =['1c','2c','3c','4c','5c','6c','7c','8c','9c','10c','Jc','Qc','Kc']
-const paus = ['1p','2p','3p','4p','5p','6p','7p','8p','9p','10p','Jp','Qp','Kp']
-const espadas = ['1e','2e','3e','4e','5e','6e','7e','8e','9e','10e','Je','Qe','Ke']
-const ouros = ['1o','2o','3o','4o','5o','6o','7o','8o','9o','10o','Jo','Qo','Ko']
-
+const hearts =['1h','2h','3h','4h','5h','6h','7h','8h','9h','10h','Jh','Qh','Kh']
+const clubs = ['1c','2c','3c','4c','5c','6c','7c','8c','9c','10c','Jc','Qc','Kc']
+const spades = ['1s','2s','3s','4s','5s','6s','7s','8s','9s','10s','Js','Qs','Ks']
+const diamonds = ['1d','2d','3d','4d','5d','6d','7d','8d','9d','10d','Jd','Qd','Kd']
+const deck = hearts.concat(clubs,spades,diamonds)
 const main = document.getElementById('elements')
  
-const baralho = copas.map(number => {
-  const element = document.createElement('div')
-  element.textContent = number
-  
-  return element;
-})
+createListSuit = deck =>{
+  return deck.map(number => {
+    const element = document.createElement('div')
+    element.textContent = number
+    return element;
+  })
+}
 
-baralho.forEach(node => {
+const nodeList = createListSuit(deck)
+
+nodeList.forEach(node => {
   main.appendChild(node);
 })
 
+//Buttons
+const clubsButton = document.querySelector('#clubs')
+const diamondsButton = document.querySelector('#diamonds')
+const heartsButton = document.querySelector('#hearts')
+const spadesButton = document.querySelector('#spades')
+
+//Events
+clubsButton.addEventListener('click',() => {
+  const newListSuit = createListSuit(clubs);
+  main.replaceChildren(...newListSuit);
+})
+
+diamondsButton.addEventListener('click',() => {
+  const newListSuit = createListSuit(diamonds);
+  main.replaceChildren(...newListSuit);
+})
+
+heartsButton.addEventListener('click',() => {
+  const newListSuit = createListSuit(hearts);
+  main.replaceChildren(...newListSuit);
+})
+
+spadesButton.addEventListener('click',() => {
+  const newListSuit = createListSuit(spades);
+  main.replaceChildren(...newListSuit);
+})
