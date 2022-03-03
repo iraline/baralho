@@ -24,6 +24,7 @@ const clubsButton = document.querySelector('#clubs')
 const diamondsButton = document.querySelector('#diamonds')
 const heartsButton = document.querySelector('#hearts')
 const spadesButton = document.querySelector('#spades')
+const deckButton = document.querySelector('#deck')
 
 //Events
 clubsButton.addEventListener('click',() => {
@@ -45,3 +46,9 @@ spadesButton.addEventListener('click',() => {
   const newListSuit = createListSuit(spades);
   main.replaceChildren(...newListSuit);
 })
+
+deckButton.addEventListener('click',() => {
+  const newListSuit = createListSuit(deck);
+  main.replaceChildren(...newListSuit);
+})
+
