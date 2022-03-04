@@ -1,11 +1,8 @@
 const VALUES = ['1','2','3','4','5','6','7','8','9','10','J','Q','K']
-//trocar nome numbers - ok
-//constante maius - ok
 const SUITS = ['h','c','s','d']
-
 const MAIN = document.getElementById('elements')
+
 let state = 'deck' 
-//Modificar nome dos estados - ok
 let deck = []
 
 SUITS.forEach(suit =>{
@@ -14,6 +11,8 @@ SUITS.forEach(suit =>{
     deck.push(number+suit)
   })
 })
+
+const originalDeck = [...deck] 
 
 createListSuit = suit => {
   return suit.map(card => {
@@ -37,6 +36,7 @@ const heartsButton = document.querySelector('#hearts')
 const spadesButton = document.querySelector('#spades')
 const deckButton = document.querySelector('#deck')
 const shuffleButton = document.querySelector('#shuffle')
+const resetButton = document.querySelector('#reset')
 
 //Events
 clubsButton.addEventListener('click',() => {
@@ -82,6 +82,15 @@ deckButton.addEventListener('click',() => {
   MAIN.replaceChildren(...newListSuit);
 })
 
+resetButton.addEventListener('click',() => {
+  state = 'deck' 
+  
+  deck = [...originalDeck]
+
+  const newListSuit = createListSuit(deck);
+  MAIN.replaceChildren(...newListSuit);
+})
+
 shuffleButton.addEventListener('click',() => {
   let list
 
@@ -97,7 +106,6 @@ shuffleButton.addEventListener('click',() => {
   const newListSuit = createListSuit(list);
   MAIN.replaceChildren(...newListSuit);
 
-  list = list.sort(()=>1)
 })
 
 function filterSuit(card){
