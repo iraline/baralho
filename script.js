@@ -1,13 +1,16 @@
 const numbers = ['1','2','3','4','5','6','7','8','9','10','J','Q','K']
+//trocar nome numbers
+//constante maius
 const suits = ['h','c','s','d']
 
 const main = document.getElementById('elements')
 let state = 'de' 
-
+//Modificar nome dos estados
 let deck = []
 
 suits.forEach(suit =>{
   numbers.forEach(number =>{
+    //Criar objeto 
     deck.push(number+suit)
   })
 })
@@ -15,7 +18,6 @@ suits.forEach(suit =>{
 createListSuit = suit => {
   return suit.map(card => {
     const element = document.createElement('div')
-    element.className = 'card'
     element.textContent = card
     return element;
   })
@@ -99,3 +101,5 @@ function filterSuit(card){
   if(card[card.length-1] == state[0])
     return card
 }
+
+//Adicionar botao para ordenar o deck
