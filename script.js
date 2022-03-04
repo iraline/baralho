@@ -4,9 +4,10 @@ const spades = ['1s','2s','3s','4s','5s','6s','7s','8s','9s','10s','Js','Qs','Ks
 const diamonds = ['1d','2d','3d','4d','5d','6d','7d','8d','9d','10d','Jd','Qd','Kd']
 const deck = hearts.concat(clubs,spades,diamonds)
 const main = document.getElementById('elements')
- 
-createListSuit = deck =>{
-  return deck.map(number => {
+let state = 'de' 
+
+createListSuit = x =>{
+  return x.map(number => {
     const element = document.createElement('div')
     element.textContent = number
     return element;
@@ -25,30 +26,78 @@ const diamondsButton = document.querySelector('#diamonds')
 const heartsButton = document.querySelector('#hearts')
 const spadesButton = document.querySelector('#spades')
 const deckButton = document.querySelector('#deck')
+const shuffleButton = document.querySelector('#shuffle')
 
 //Events
 clubsButton.addEventListener('click',() => {
-  const newListSuit = createListSuit(clubs);
+  state = 'cl' 
+
+  filtredList = deck.filter(filterSuit)
+  
+  const newListSuit = createListSuit(filtredList);
   main.replaceChildren(...newListSuit);
 })
 
 diamondsButton.addEventListener('click',() => {
-  const newListSuit = createListSuit(diamonds);
+  state = 'di' 
+
+  filtredList = deck.filter(filterSuit)
+  
+  const newListSuit = createListSuit(filtredList);
   main.replaceChildren(...newListSuit);
 })
 
 heartsButton.addEventListener('click',() => {
-  const newListSuit = createListSuit(hearts);
+  state = 'he' 
+  
+  filtredList = deck.filter(filterSuit)
+  
+  const newListSuit = createListSuit(filtredList);
   main.replaceChildren(...newListSuit);
 })
 
 spadesButton.addEventListener('click',() => {
-  const newListSuit = createListSuit(spades);
+  state = 'sp' 
+
+  filtredList = deck.filter(filterSuit)
+  
+  const newListSuit = createListSuit(filtredList);
   main.replaceChildren(...newListSuit);
 })
 
 deckButton.addEventListener('click',() => {
+  state = 'de' 
+  
   const newListSuit = createListSuit(deck);
   main.replaceChildren(...newListSuit);
 })
 
+shuffleButton.addEventListener('click',() => {
+  let list
+  switch (state){
+    case 'cl':
+      list = clubs
+    break   
+    case 'di':
+      list = diamonds
+    break
+    case 'he':
+      list = hearts
+    break
+    case 'sp':
+      list = spades
+    break
+    default:
+      list = deck
+  }
+
+  list = list.sort(() => Math.random() - 0.5)
+
+  const newListSuit = createListSuit(list);
+  main.replaceChildren(...newListSuit);
+})
+
+function filterSuit(card){
+  if(card[card.length-1] == state[0])
+    return card
+}
