@@ -6,8 +6,8 @@ const deck = hearts.concat(clubs,spades,diamonds)
 const main = document.getElementById('elements')
 let state = 'de' 
 
-createListSuit = deck =>{
-  return deck.map(number => {
+createListSuit = x =>{
+  return x.map(number => {
     const element = document.createElement('div')
     element.textContent = number
     return element;
@@ -31,30 +31,43 @@ const shuffleButton = document.querySelector('#shuffle')
 //Events
 clubsButton.addEventListener('click',() => {
   state = 'cl' 
-  const newListSuit = createListSuit(clubs);
+
+  filtredList = deck.filter(filterSuit)
+  
+  const newListSuit = createListSuit(filtredList);
   main.replaceChildren(...newListSuit);
 })
 
 diamondsButton.addEventListener('click',() => {
   state = 'di' 
-  const newListSuit = createListSuit(diamonds);
+
+  filtredList = deck.filter(filterSuit)
+  
+  const newListSuit = createListSuit(filtredList);
   main.replaceChildren(...newListSuit);
 })
 
 heartsButton.addEventListener('click',() => {
   state = 'he' 
-  const newListSuit = createListSuit(hearts);
+  
+  filtredList = deck.filter(filterSuit)
+  
+  const newListSuit = createListSuit(filtredList);
   main.replaceChildren(...newListSuit);
 })
 
 spadesButton.addEventListener('click',() => {
   state = 'sp' 
-  const newListSuit = createListSuit(spades);
+
+  filtredList = deck.filter(filterSuit)
+  
+  const newListSuit = createListSuit(filtredList);
   main.replaceChildren(...newListSuit);
 })
 
 deckButton.addEventListener('click',() => {
   state = 'de' 
+  
   const newListSuit = createListSuit(deck);
   main.replaceChildren(...newListSuit);
 })
@@ -83,3 +96,8 @@ shuffleButton.addEventListener('click',() => {
   const newListSuit = createListSuit(list);
   main.replaceChildren(...newListSuit);
 })
+
+function filterSuit(card){
+  if(card[card.length-1] == state[0])
+    return card
+}
