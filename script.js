@@ -1,6 +1,9 @@
 const numbers = ['1','2','3','4','5','6','7','8','9','10','J','Q','K']
 const suits = ['h','c','s','d']
 
+const main = document.getElementById('elements')
+let state = 'de' 
+
 let deck = []
 
 suits.forEach(suit =>{
@@ -9,10 +12,7 @@ suits.forEach(suit =>{
   })
 })
 
-const main = document.getElementById('elements')
-let state = 'de' 
-
-createListSuit = suit =>{
+createListSuit = suit => {
   return suit.map(card => {
     const element = document.createElement('div')
     element.textContent = card
@@ -82,7 +82,7 @@ shuffleButton.addEventListener('click',() => {
   let list
 
   if(state == 'de'){
-    list =  deck
+    list = deck
   }
   else{
     list = deck.filter(filterSuit)
