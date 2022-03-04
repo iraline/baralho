@@ -15,6 +15,7 @@ suits.forEach(suit =>{
 createListSuit = suit => {
   return suit.map(card => {
     const element = document.createElement('div')
+    element.className = 'card'
     element.textContent = card
     return element;
   })
