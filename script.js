@@ -1,15 +1,21 @@
-const hearts =['1h','2h','3h','4h','5h','6h','7h','8h','9h','10h','Jh','Qh','Kh']
-const clubs = ['1c','2c','3c','4c','5c','6c','7c','8c','9c','10c','Jc','Qc','Kc']
-const spades = ['1s','2s','3s','4s','5s','6s','7s','8s','9s','10s','Js','Qs','Ks']
-const diamonds = ['1d','2d','3d','4d','5d','6d','7d','8d','9d','10d','Jd','Qd','Kd']
-const deck = hearts.concat(clubs,spades,diamonds)
+const numbers = ['1','2','3','4','5','6','7','8','9','10','J','Q','K']
+const suits = ['h','c','s','d']
+
+let deck = []
+
+suits.forEach(suit =>{
+  numbers.forEach(number =>{
+    deck.push(number+suit)
+  })
+})
+
 const main = document.getElementById('elements')
 let state = 'de' 
 
-createListSuit = x =>{
-  return x.map(number => {
+createListSuit = suit =>{
+  return suit.map(card => {
     const element = document.createElement('div')
-    element.textContent = number
+    element.textContent = card
     return element;
   })
 }
@@ -74,21 +80,12 @@ deckButton.addEventListener('click',() => {
 
 shuffleButton.addEventListener('click',() => {
   let list
-  switch (state){
-    case 'cl':
-      list = clubs
-    break   
-    case 'di':
-      list = diamonds
-    break
-    case 'he':
-      list = hearts
-    break
-    case 'sp':
-      list = spades
-    break
-    default:
-      list = deck
+
+  if(state == 'de'){
+    list =  deck
+  }
+  else{
+    list = deck.filter(filterSuit)
   }
 
   list = list.sort(() => Math.random() - 0.5)
