@@ -6,10 +6,10 @@ let state = 'deck'
 let deck = []
 
 SUITS.forEach(suit =>{
-  VALUES.forEach(number =>{
-    //Criar objeto 
-    deck.push(number+suit)
+  VALUES.forEach(value =>{
+   deck.push({value,suit})
   })
+  console.log(deck)
 })
 
 const originalDeck = [...deck] 
@@ -18,12 +18,14 @@ createListSuit = suit => {
   return suit.map(card => {
     const element = document.createElement('div')
     element.className = 'card'
-    element.textContent = card
+
+    //console.log(card)
+    element.textContent = card.value + card.suit
     return element;
   })
 }
 
-const NODE_LIST = createListSuit(deck)
+const NODE_LIST = createListSuit(deck);
 
 NODE_LIST.forEach(node => {
   MAIN.appendChild(node);
@@ -109,8 +111,7 @@ shuffleButton.addEventListener('click',() => {
 })
 
 function filterSuit(card){
-  if(card[card.length-1] == state[0])
+  if(card.suit == state[0]){
     return card
+  }
 }
-
-//Adicionar botao para ordenar o deck
