@@ -11,7 +11,7 @@ SUITS.forEach(suit =>{
   })
 })
 
-const originalDeck = [...deck] 
+const ORIGINAL_DECK = [...deck] 
 
 createListSuit = suit => {
   return suit.map(card => {
@@ -85,7 +85,7 @@ deckButton.addEventListener('click',() => {
 resetButton.addEventListener('click',() => {
   state = 'deck' 
   
-  deck = [...originalDeck]
+  deck = [...ORIGINAL_DECK]
 
   const newListSuit = createListSuit(deck);
   MAIN.replaceChildren(...newListSuit);
