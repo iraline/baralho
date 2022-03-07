@@ -9,7 +9,6 @@ SUITS.forEach(suit =>{
   VALUES.forEach(value =>{
    deck.push({value,suit})
   })
-  console.log(deck)
 })
 
 const originalDeck = [...deck] 
@@ -19,7 +18,6 @@ createListSuit = suit => {
     const element = document.createElement('div')
     element.className = 'card'
 
-    //console.log(card)
     element.textContent = card.value + card.suit
     return element;
   })
